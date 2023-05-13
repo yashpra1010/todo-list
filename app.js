@@ -26,6 +26,11 @@ app.get('/',function (req,res){
 
 app.post('/', function(req,res){
     var newItem = req.body.listItem;
+    var index = req.body.index;
+    
+    if(typeof index !== 'undefined'){
+        items.splice(index,1);
+    }
 
     if (typeof newItem !== 'undefined'){
         items.push(newItem);

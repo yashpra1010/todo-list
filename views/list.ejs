@@ -28,19 +28,21 @@
         </div>
         <div class="form">
             <form action="/" method="POST">
-                <input type="text" class="form-control" name="listItem" placeholder="Add your work..." required autocomplete="off">
-                <button class="btn btn-primary" type="submit">+</button>
+                <input type="text" class="form-control" name="listItem" placeholder="Add your work..." required autocomplete="off" autofocus>
+                <button class="btn btn-primary btn-floating" type="submit"><i class="fas fa-plus"></i></button>
             </form>
         </div>
         <div class="card">
             <div class="card-body">
                 <div class="card-text item">
+                    <form action="/" method="post">
                 <% for(var i=0; i < finalList.length; i++) {%>
-                    <input type="checkbox" >
-                    <label class="strikethrough" value=<%=i%>>
+                    <button type="submit" name="index" class="btn btn-primary minus" value=<%= i %>><i class="fas fa-xs fa-minus"></i></button>
+                    <label class="item-name">
                         <%= finalList[i] %>
                     </label><br>
                     <% } %>
+                </form>
         </div>
         </div>
         </div>
