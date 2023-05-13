@@ -26,8 +26,13 @@ app.get('/',function (req,res){
 
 app.post('/', function(req,res){
     var newItem = req.body.listItem;
-    items.push(newItem);
-    res.redirect("/");
+
+    if (typeof newItem !== 'undefined'){
+        items.push(newItem);
+        res.redirect("/");
+    } else {
+        res.redirect("/");
+    }
 });
 
 app.listen(process.env.PORT || port, () => console.log('Server is running at port: '+ port + '/' + process.env.PORT));
