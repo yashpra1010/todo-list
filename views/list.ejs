@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>To-Do List</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+            <img src="images/logo.png" class="pig-logo">
+            <span class="app-name">To-Do List</span>
+        <div class="date">
+            <h1 class="date-text">
+                <%= kindOfDay %>
+            </h1>
+        </div>
+        <div class="form">
+            <form action="/" method="POST">
+                <input type="text" class="form-control" name="listItem" placeholder="Add your work..." required autocomplete="off">
+                <button class="btn btn-primary" type="submit">+</button>
+            </form>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-text item">
+                <% for(var i=0; i < finalList.length; i++) {%>
+                    <input type="checkbox" >
+                    <label class="strikethrough" value=<%=i%>>
+                        <%= finalList[i] %>
+                    </label><br>
+                    <% } %>
+        </div>
+        </div>
+        </div>
+    </div>
+    <footer>
+        &copy; Copyright 2023 Yash Prajapati
+    </footer>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
+</body>
+
+</html>

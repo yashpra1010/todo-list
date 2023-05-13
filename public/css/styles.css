@@ -1,0 +1,89 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #37306B;
+    color: #f1889a;
+}
+
+.date-text {
+    font-family: 'Pacifico', cursive;
+    width: 250px;
+    display: inline-block;
+    margin-right: 2%;
+    margin-top: 40px;
+    right: 10px;
+    position: absolute;
+    font-size: 32px;
+}
+
+.pig-logo {
+    width: 80px;
+    position: absolute;
+    margin: 10px;
+    left: 40px;
+    top: 10px;
+}
+
+.app-name {
+    font-family: 'Pacifico', cursive;
+    display: inline-block;
+    font-size: 50px;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.btn {
+    background-color: #9a53bd !important;
+    box-shadow: 0px 0px 5px #000 !important;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    padding-top: 6px;
+}
+
+.btn:hover {
+    background-color: #c02a43 !important;
+}
+
+.form-control {
+    width: 500px !important;
+    height: 50px;
+    display: inline-block;
+    border-radius: 15px;
+    margin-right:2%;
+    margin-left: 20%;
+    margin-top: 12%;
+    padding-left: 2%;
+}
+
+::placeholder {
+    color: black !important;
+    opacity: 1 !important;
+  }
+
+.card {
+    background-color: #211d3f;
+    width: 600px;
+    margin-left: 20%;
+    margin-top: 2%;
+    padding-left: 20px;
+}
+
+label {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+footer {
+    margin-top: 60px;
+    margin-left: 520px;
+}
+
+input[type=checkbox]:checked + label.strikethrough{
+    text-decoration: line-through;
+  }
