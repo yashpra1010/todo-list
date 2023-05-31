@@ -1,43 +1,60 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import List from "./models/List.js";
 
 const app = express();
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// if you want to change the port change here
 const port = 3000;
 
-// to convert Date obj() into english string format
-var today = new Date();
-var options = {
-    weekday: "long",
-    day: "numeric",
-    month: "long"
+// Middleware
+app.use(express.json());
+
+// getting all the tasks
+app.get("/", async (req, res) => {
+  try {
+    const getAllTasks = await List.find({});
+    res.render("list", { kindOfDay: "Today", finalList: getAllTasks });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// creating task
+app.post("/", async (req, res) => {
+  const newTask = new List(req.body);
+  try {
+    const saveTask = await newTask.save();
+    res.status(200).redirect("/");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// deleting the task
+app.post("/delete", async (req, res) => {
+    try {
+    await List.findByIdAndDelete(req.body.index);
+    res.redirect("/");
+    } catch(err){
+        res.status(500).json(err)
+    }
+});
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/todoDB");
+    console.log("Connected to MongoDB!");
+  } catch (err) {
+    throw err;
+  }
 };
-var day = today.toLocaleDateString("en-US", options);
-var items = [];
 
-app.get('/',function (req,res){
-    res.render('list',{kindOfDay: day, finalList: items});
+app.listen(process.env.PORT || port, () => {
+  console.log("Server is running at port: " + port + "/" + process.env.PORT);
+  connectDB();
 });
-
-app.post('/', function(req,res){
-    var newItem = req.body.listItem;
-    var index = req.body.index;
-    
-    if(typeof index !== 'undefined'){
-        items.splice(index,1);
-    }
-
-    if (typeof newItem !== 'undefined'){
-        items.push(newItem);
-        res.redirect("/");
-    } else {
-        res.redirect("/");
-    }
-});
-
-app.listen(process.env.PORT || port, () => console.log('Server is running at port: '+ port + '/' + process.env.PORT));
