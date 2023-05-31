@@ -11,6 +11,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = 3000;
 
+var today = new Date();
+var options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+};
+var day = today.toLocaleDateString("en-US", options);
+
 // Middleware
 app.use(express.json());
 
@@ -18,7 +26,7 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   try {
     const getAllTasks = await List.find({});
-    res.render("list", { kindOfDay: "Today", finalList: getAllTasks });
+    res.render("list", { kindOfDay: day, finalList: getAllTasks });
   } catch (err) {
     res.status(500).json(err);
   }
